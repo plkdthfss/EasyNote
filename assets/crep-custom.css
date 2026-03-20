@@ -1,0 +1,79 @@
+/* crepe-light-custom.css */
+
+/* 1. 全局强制白色 + light 配色（覆盖主题变量） */
+.crepe .milkdown {
+  /* 纯白背景，确保无灰调 */
+  --crepe-color-background: #ffffff !important;
+  --crepe-color-surface: #ffffff !important;
+  --crepe-color-surface-low: #f9f9f9 !important;  /* 轻微层次，如果需要 */
+  
+  /* 文本颜色：深黑/灰，示例中是深色文字 */
+  --crepe-color-on-background: #111111 !important;
+  --crepe-color-on-surface: #222222 !important;
+  --crepe-color-on-surface-variant: #444444 !important;
+  
+  /* 强调色（链接、粗体等高亮） - 保持简洁，可改成蓝色/紫色 */
+  --crepe-color-primary: #0066cc !important;     /* 示例：蓝色链接 */
+  --crepe-color-secondary: #e6f0ff !important;
+  
+  /* 布局核心：窄列 + 居中（模仿你的示例） */
+  --crepe-max-width: 800px !important;           /* 推荐 700–900px，根据屏幕调 */
+  --crepe-content-padding-x: 20px !important;    /* 左右小 padding，示例很紧凑 */
+}
+
+/* 2. 核心编辑区（.ProseMirror） - 最重要，控制内容显示 */
+.milkdown .ProseMirror,
+.milkdown .editor {
+  max-width: var(--crepe-max-width) !important;
+  margin: 0 auto !important;                     /* 居中 */
+  padding: 32px 24px !important;                 /* 上/下稍大，左/右适中（可调小到 16px） */
+  background: #ffffff !important;
+  color: #111111 !important;
+  font-family: -apple-system, BlinkMacOSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  line-height: 1.7 !important;
+}
+
+/* 3. 整体容器撑满但内容居中 */
+.crepe,
+.crepe-editor,
+.crepe .crepe-container,
+.crepe .crepe-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #ffffff !important;
+}
+
+/* 4. 任务列表、粗体、斜体、链接等样式微调（更接近示例） */
+.milkdown .ProseMirror ul[data-type="taskList"] li {
+  list-style: none;
+  margin: 0.4em 0;
+}
+
+.milkdown .ProseMirror strong {
+  font-weight: 700;
+  color: #000;
+}
+
+.milkdown .ProseMirror em {
+  font-style: italic;
+  color: #333;
+}
+
+.milkdown .ProseMirror a {
+  color: var(--crepe-color-primary);
+  text-decoration: underline;
+}
+
+/* 5. 如果想隐藏或缩小侧边栏/工具栏（可选，如果示例不需要） */
+.crepe-sidebar {
+  width: 0 !important;
+  visibility: hidden !important;
+  /* 或 width: 240px; 如果想保留但窄一点 */
+}
+
+.crepe-toolbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #eee !important;
+}
