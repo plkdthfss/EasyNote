@@ -1,75 +1,215 @@
-/* crepe-light-custom.css */
+/* Milkdown Crepe 主题自定义 - 支持深色/亮色主题 */
 
 :root {
-  --crepe-font-size-code: 17px;
+  --crepe-font-size-code: 14px;
+  --crepe-max-width: 100%;
 }
 
-/* 2. 核心编辑区（.ProseMirror） - 最重要，控制内容显示 */
-.milkdown .ProseMirror,
-.milkdown .editor {
+/* ============ 深色主题 ============ */
+.editor-container.theme-dark .milkdown .ProseMirror,
+.editor-container.theme-dark .milkdown .editor {
   max-width: var(--crepe-max-width) !important;
-  margin: 0 auto !important;                     /* 居中 */
-  padding: 32px 24px !important;                 /* 上/下稍大，左/右适中（可调小到 16px） */
-  background: #ffffff !important;
-  color: #111111 !important;
-  font-family: -apple-system, BlinkMacOSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  margin: 0 auto !important;
+  padding: 24px 16px !important;
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   line-height: 1.7 !important;
 }
 
-/* 3. 整体容器撑满但内容居中 */
-.crepe,
-.crepe-editor,
-.crepe .crepe-container,
-.crepe .crepe-main {
+.editor-container.theme-dark .crepe,
+.editor-container.theme-dark .crepe-editor,
+.editor-container.theme-dark .crepe .crepe-container,
+.editor-container.theme-dark .crepe .crepe-main {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  background: #ffffff !important;
+  background: #0f172a !important;
 }
 
-/* 4. 任务列表、粗体、斜体、链接等样式微调（更接近示例） */
-.milkdown .ProseMirror ul[data-type="taskList"] li {
-  list-style: none;
-  margin: 0.4em 0;
+.editor-container.theme-dark .crepe-toolbar {
+  background: #1e293b !important;
+  border-bottom: 1px solid #334155 !important;
 }
 
-.milkdown .ProseMirror strong {
+.editor-container.theme-dark .crepe-toolbar-item {
+  color: #cbd5e1 !important;
+}
+
+.editor-container.theme-dark .crepe-toolbar-item:hover {
+  background: #334155 !important;
+  color: #f1f5f9 !important;
+}
+
+.editor-container.theme-dark .milkdown .ProseMirror strong {
   font-weight: 700;
-  color: #000;
+  color: #f1f5f9;
 }
 
-.milkdown .ProseMirror em {
+.editor-container.theme-dark .milkdown .ProseMirror em {
   font-style: italic;
-  color: #333;
+  color: #cbd5e1;
 }
 
-.milkdown .ProseMirror a {
-  color: var(--crepe-color-primary);
+.editor-container.theme-dark .milkdown .ProseMirror a {
+  color: #0ea5e9;
   text-decoration: underline;
 }
 
-/* 5. 如果想隐藏或缩小侧边栏/工具栏（可选，如果示例不需要） */
+.editor-container.theme-dark .milkdown .ProseMirror code {
+  background: #1e293b !important;
+  color: #0ea5e9 !important;
+  border: 1px solid #334155 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+.editor-container.theme-dark .milkdown .ProseMirror pre {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+.editor-container.theme-dark .milkdown .ProseMirror blockquote {
+  border-left: 3px solid #0ea5e9 !important;
+  color: #cbd5e1 !important;
+  background: rgba(14, 165, 233, 0.1) !important;
+  padding: 12px 16px !important;
+  margin: 12px 0 !important;
+}
+
+.editor-container.theme-dark .milkdown .ProseMirror h1,
+.editor-container.theme-dark .milkdown .ProseMirror h2,
+.editor-container.theme-dark .milkdown .ProseMirror h3,
+.editor-container.theme-dark .milkdown .ProseMirror h4,
+.editor-container.theme-dark .milkdown .ProseMirror h5,
+.editor-container.theme-dark .milkdown .ProseMirror h6 {
+  color: #f1f5f9 !important;
+}
+
+.editor-container.theme-dark .cm-editor {
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+.editor-container.theme-dark .cm-gutters {
+  background: #0f172a !important;
+  border-right: 1px solid #334155 !important;
+}
+
+.editor-container.theme-dark .cm-linenumber {
+  color: #64748b !important;
+}
+
+/* ============ 亮色主题 ============ */
+.editor-container.theme-light .milkdown .ProseMirror,
+.editor-container.theme-light .milkdown .editor {
+  max-width: var(--crepe-max-width) !important;
+  margin: 0 auto !important;
+  padding: 24px 16px !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.7 !important;
+}
+
+.editor-container.theme-light .crepe,
+.editor-container.theme-light .crepe-editor,
+.editor-container.theme-light .crepe .crepe-container,
+.editor-container.theme-light .crepe .crepe-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #f8fafc !important;
+}
+
+.editor-container.theme-light .crepe-toolbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.editor-container.theme-light .crepe-toolbar-item {
+  color: #475569 !important;
+}
+
+.editor-container.theme-light .crepe-toolbar-item:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror em {
+  font-style: italic;
+  color: #475569;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror a {
+  color: #0284c7;
+  text-decoration: underline;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror code {
+  background: #f1f5f9 !important;
+  color: #0284c7 !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror pre {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror blockquote {
+  border-left: 3px solid #0284c7 !important;
+  color: #475569 !important;
+  background: rgba(2, 132, 199, 0.05) !important;
+  padding: 12px 16px !important;
+  margin: 12px 0 !important;
+}
+
+.editor-container.theme-light .milkdown .ProseMirror h1,
+.editor-container.theme-light .milkdown .ProseMirror h2,
+.editor-container.theme-light .milkdown .ProseMirror h3,
+.editor-container.theme-light .milkdown .ProseMirror h4,
+.editor-container.theme-light .milkdown .ProseMirror h5,
+.editor-container.theme-light .milkdown .ProseMirror h6 {
+  color: #0f172a !important;
+}
+
+.editor-container.theme-light .cm-editor {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.editor-container.theme-light .cm-gutters {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.editor-container.theme-light .cm-linenumber {
+  color: #cbd5e1 !important;
+}
+
+/* ============ 通用样式 ============ */
 .crepe-sidebar {
   width: 0 !important;
   visibility: hidden !important;
-  /* 或 width: 240px; 如果想保留但窄一点 */
 }
 
-.crepe-toolbar {
-  background: #ffffff !important;
-  border-bottom: 1px solid #eee !important;
-}
-
-/* CodeMirror 统一控制（关键修复）
-  code部分修改字体（保证行号文字对齐）
-*/
 .cm-editor {
   font-size: var(--crepe-font-size-code);
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* 关键对齐 */
 .cm-line,
 .cm-gutterElement {
   display: flex;
@@ -77,3 +217,32 @@
   padding: 0.1 !important;
 }
 
+/* 列表样式 */
+.milkdown .ProseMirror ul,
+.milkdown .ProseMirror ol {
+  margin: 12px 0 !important;
+  padding-left: 24px !important;
+}
+
+.milkdown .ProseMirror li {
+  margin: 6px 0 !important;
+}
+
+/* 表格样式 */
+.milkdown .ProseMirror table {
+  border-collapse: collapse;
+  margin: 12px 0 !important;
+}
+
+.milkdown .ProseMirror th,
+.milkdown .ProseMirror td {
+  border: 1px solid var(--border-color) !important;
+  padding: 8px 12px !important;
+}
+
+/* 分割线 */
+.milkdown .ProseMirror hr {
+  border: none;
+  border-top: 1px solid var(--border-color) !important;
+  margin: 16px 0 !important;
+}

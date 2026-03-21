@@ -21,7 +21,7 @@
       >
         <n-icon :size="16">
           <StarOutline v-if="!note.isFavorite" />
-          <StarFilled v-else />
+          <Star v-else />
         </n-icon>
       </button>
     </div>
@@ -80,6 +80,7 @@ const getCategoryColor = (category: string): string => {
 const handleToggleFavorite = () => {
   emit('toggle-favorite', props.note.id)
 }
+
 
 </script>
 

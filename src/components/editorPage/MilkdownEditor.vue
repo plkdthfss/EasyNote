@@ -1,47 +1,68 @@
 <template>
-  <div class="editor-container">
+  <div class="editor-container" :class="`theme-${themeMode}`">
     <div ref="editorRef" class="crepe-editor"></div>
   </div>
 </template>
 
-<script setup>
-import { onMounted, ref, onBeforeUnmount } from 'vue';
-import { Crepe } from '@milkdown/crepe';
-import "@milkdown/crepe/theme/common/style.css";
-import "@milkdown/crepe/theme/frame.css";
+<script setup lang="ts">
+import { onMounted, ref, onBeforeUnmount, watch } from 'vue'
+import { Crepe } from '@milkdown/crepe'
+import '@milkdown/crepe/theme/common/style.css'
+import '@milkdown/crepe/theme/frame.css'
 import '../../../assets/crep-custom.css'
 
-const editorRef = ref(null);
-let crepe = null;
+interface Props {
+  themeMode: 'light' | 'dark'
+}
+
+const props = defineProps<Props>()
+const editorRef = ref<HTMLDivElement | null>(null)
+let crepe: Crepe | null = null
 
 onMounted(() => {
   if (editorRef.value) {
-    // 初始化 Crepe 编辑器
     crepe = new Crepe({
       root: editorRef.value,
       features: {
         [Crepe.Feature.Toolbar]: true,
-
       },
-      featureConfigs:{
-        [Crepe.Feature.BlockEdit]:{
+      featureConfigs: {
+        [Crepe.Feature.BlockEdit]: {
           handleAddIcon: '',
         },
       },
       defaultValue: '# Hello Milkdown!\n这是一段测试内容。尝试输入 `/` 来唤起斜杠菜单。',
-    });
+    })
 
-    // 创建编辑器
     crepe.create().then(() => {
-      console.log('Milkdown Editor 准备就绪');
-    });
+      console.log('Milkdown Editor 准备就绪')
+      applyTheme()
+    })
   }
-});
+})
 
-// 组件卸载时销毁实例
+const applyTheme = () => {
+  if (!editorRef.value) return
+
+  const isDark = props.themeMode === 'dark'
+  const root = editorRef.value
+
+  if (isDark) {
+    root.classList.add('dark-theme')
+    root.classList.remove('light-theme')
+  } else {
+    root.classList.add('light-theme')
+    root.classList.remove('dark-theme')
+  }
+}
+
+watch(() => props.themeMode, () => {
+  applyTheme()
+})
+
 onBeforeUnmount(() => {
-  crepe?.destroy();
-});
+  crepe?.destroy()
+})
 </script>
 
 <style scoped>
@@ -53,7 +74,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-/* 确保编辑器占据整个容器 */
 .crepe-editor {
   width: 100%;
   height: 100%;
@@ -61,9 +81,82 @@ onBeforeUnmount(() => {
   overflow-y: auto;
 }
 
-/* 移除默认的最大宽度限制 */
 .crepe-editor .milkdown {
   max-width: 100%;
   padding: 16px;
+}
+
+/* 深色主题样式 */
+.editor-container.theme-dark :deep(.crepe-editor),
+.editor-container.theme-dark :deep(.milkdown) {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+.editor-container.theme-dark :deep(.milkdown-menu),
+.editor-container.theme-dark :deep(.milkdown-toolbar) {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.editor-container.theme-dark :deep(.milkdown-menu-item),
+.editor-container.theme-dark :deep(.milkdown-toolbar-item) {
+  color: #cbd5e1;
+}
+
+.editor-container.theme-dark :deep(.milkdown-menu-item:hover),
+.editor-container.theme-dark :deep(.milkdown-toolbar-item:hover) {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.editor-container.theme-dark :deep(.milkdown-input),
+.editor-container.theme-dark :deep(.milkdown-code) {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+.editor-container.theme-dark :deep(.milkdown-blockquote) {
+  border-left-color: #0ea5e9;
+  color: #cbd5e1;
+}
+
+/* 亮色主题样式 */
+.editor-container.theme-light :deep(.crepe-editor),
+.editor-container.theme-light :deep(.milkdown) {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.editor-container.theme-light :deep(.milkdown-menu),
+.editor-container.theme-light :deep(.milkdown-toolbar) {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.editor-container.theme-light :deep(.milkdown-menu-item),
+.editor-container.theme-light :deep(.milkdown-toolbar-item) {
+  color: #475569;
+}
+
+.editor-container.theme-light :deep(.milkdown-menu-item:hover),
+.editor-container.theme-light :deep(.milkdown-toolbar-item:hover) {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.editor-container.theme-light :deep(.milkdown-input),
+.editor-container.theme-light :deep(.milkdown-code) {
+  background-color: #ffffff;
+  color: #0f172a;
+  border-color: #e2e8f0;
+}
+
+.editor-container.theme-light :deep(.milkdown-blockquote) {
+  border-left-color: #0284c7;
+  color: #475569;
 }
 </style>

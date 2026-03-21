@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { crx } from '@crxjs/vite-plugin'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 import manifest from './manifest.config'
 
@@ -12,6 +14,9 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     crx({ manifest }),
+    Components({
+      resolvers: [NaiveUiResolver()]
+    }),
   ],
   // 强烈建议（开发体验更好）
   server: {
