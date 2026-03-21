@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import NoteHeader from "../components/NoteHeader.vue";
-import MilkdownEditor from "../components/MilkdownEditor.vue";
+import NoteHeader from "../components/editorPage/NoteHeader.vue";
+import MilkdownEditor from "../components/editorPage/MilkdownEditor.vue";
 </script>
 
 <style>

@@ -9,7 +9,7 @@ import { onMounted, ref, onBeforeUnmount } from 'vue';
 import { Crepe } from '@milkdown/crepe';
 import "@milkdown/crepe/theme/common/style.css";
 import "@milkdown/crepe/theme/frame.css";
-import '../../assets/crep-custom.css'
+import '../../../assets/crep-custom.css'
 
 const editorRef = ref(null);
 let crepe = null;
@@ -26,9 +26,6 @@ onMounted(() => {
       featureConfigs:{
         [Crepe.Feature.BlockEdit]:{
           handleAddIcon: '',
-        },
-        [Crepe.Feature.CodeMirror]: {
-          extensions: []
         },
       },
       defaultValue: '# Hello Milkdown!\n这是一段测试内容。尝试输入 `/` 来唤起斜杠菜单。',

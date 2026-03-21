@@ -4,27 +4,6 @@
   --crepe-font-size-code: 17px;
 }
 
-/* 1. 全局强制白色 + light 配色（覆盖主题变量） */
-.crepe .milkdown {
-  /* 纯白背景，确保无灰调 */
-  --crepe-color-background: #ffffff !important;
-  --crepe-color-surface: #ffffff !important;
-  --crepe-color-surface-low: #f9f9f9 !important;  /* 轻微层次，如果需要 */
-  
-  /* 文本颜色：深黑/灰，示例中是深色文字 */
-  --crepe-color-on-background: #111111 !important;
-  --crepe-color-on-surface: #222222 !important;
-  --crepe-color-on-surface-variant: #444444 !important;
-  
-  /* 强调色（链接、粗体等高亮） - 保持简洁，可改成蓝色/紫色 */
-  --crepe-color-primary: #0066cc !important;     /* 示例：蓝色链接 */
-  --crepe-color-secondary: #e6f0ff !important;
-  
-  /* 布局核心：窄列 + 居中（模仿你的示例） */
-  --crepe-max-width: 800px !important;           /* 推荐 700–900px，根据屏幕调 */
-  --crepe-content-padding-x: 20px !important;    /* 左右小 padding，示例很紧凑 */
-}
-
 /* 2. 核心编辑区（.ProseMirror） - 最重要，控制内容显示 */
 .milkdown .ProseMirror,
 .milkdown .editor {
@@ -95,11 +74,6 @@
 .cm-gutterElement {
   display: flex;
   align-items: center;
-  padding: 0 !important;
+  padding: 0.1 !important;
 }
 
-/* 防止额外偏移 */
-.cm-content,
-.cm-gutters {
-  padding-top: 0 !important;
-}
