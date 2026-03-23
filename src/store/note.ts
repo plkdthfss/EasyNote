@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export interface Note {
   id: string
@@ -10,10 +10,35 @@ export interface Note {
 
 export type TabType = 'all' | 'favorites' | 'pinned'
 
+const STORAGE_KEY = 'easynote_notes'
+
+const loadNotes = (): Note[] => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) return JSON.parse(raw) as Note[]
+  } catch {
+    console.warn('Failed to load notes from localStorage')
+  }
+  return []
+}
+
+const saveNotes = (notes: Note[]) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+  } catch {
+    console.warn('Failed to save notes to localStorage')
+  }
+}
+
 export const useNoteStore = defineStore('note', () => {
-  const notes = ref<Note[]>([])
+  const notes = ref<Note[]>(loadNotes())
 
   const currentNoteId = ref<string | null>(null)
+
+  // 监听 notes 变化，自动持久化
+  watch(notes, (val) => {
+    saveNotes(val)
+  }, { deep: true })
 
   const getCurrentNote = () => {
     if (!currentNoteId.value) return null
