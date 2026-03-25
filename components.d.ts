@@ -23,6 +23,5 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBar: typeof import('./src/components/homePage/SearchBar.vue')['default']
-    TitleBar: typeof import('./src/components/editorPage/TitleBar.vue')['default']
   }
 }

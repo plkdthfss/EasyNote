@@ -5,7 +5,7 @@
         <n-icon :size="20" class="logo-icon">
           <DocumentTextOutline />
         </n-icon>
-        <span class="title-text">EasyNote</span>
+        <span class="title-text">MarkPanel</span>
       </div>
 
       <div class="right-section">
